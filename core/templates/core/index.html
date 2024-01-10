@@ -298,7 +298,8 @@
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-12">
                 <div class="about-image js-tilt">
-                    <img src="/static/img/man-2.png" alt="image">
+                    {% comment %}<img src="/static/img/man-2.png" alt="image">{% endcomment %}
+                    <img src="{{ bio.image.url }}" alt="{{ bio.title }}">
 
                     <img src="/static/img/shape.png" class="shape-image wow zoomIn" data-wow-delay="0.5s" alt="image">
                 </div>
@@ -306,81 +307,38 @@
 
             <div class="col-lg-6 col-md-12">
                 <div class="about-content white-color">
-                    <h3>Experience</h3>
+                    <h3>{{ bio.title }}</h3>
 
                     <ul class="experience-list">
                         <li>
-                            <span>2012</span>
+                            <span>2023</span>
 
-                            Completed gradution studies at Oxford University of Art and Design
-                        </li>
-                        <li>
-                            <span>2010</span>
-
-                            Completed post-graduate studies at Cambridge University of Art and Design
-                        </li>
-                        <li>
-                            <span>2008</span>
-
-                            Completed Phd studies at Kyoto University of Art and Design
+                            {{ bio.description }}
                         </li>
                     </ul>
 
                     <h3>Skills</h3>
                     <div class="skills-list">
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <h4 class="skill-title">Web Design</h4>
+                        {% for skill in skills %}
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <h4 class="skill-title">{{ skill.title }}</h4>
 
-                                <div class="skill-percentage">
-                                    <div class="count-box"><span class="count-text" data-speed="2000"
-                                                                 data-stop="95">0</span>%
+                                    <div class="skill-percentage">
+                                        <div class="count-box"><span class="count-text" data-speed="2000"
+                                                                     data-stop="{{ skill.percent }}">0</span>%
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="skill-bar">
+                                    <div class="bar-inner">
+                                        <div class="bar progress-line" data-width="{{ skill.percent }}"></div>
                                     </div>
                                 </div>
                             </div>
+                        {% endfor %}
 
-                            <div class="skill-bar">
-                                <div class="bar-inner">
-                                    <div class="bar progress-line" data-width="95"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <h4 class="skill-title">Web Development</h4>
-
-                                <div class="skill-percentage">
-                                    <div class="count-box"><span class="count-text" data-speed="2000"
-                                                                 data-stop="90">0</span>%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="skill-bar">
-                                <div class="bar-inner">
-                                    <div class="bar progress-line" data-width="90"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-header">
-                                <h4 class="skill-title">Photography</h4>
-
-                                <div class="skill-percentage">
-                                    <div class="count-box"><span class="count-text" data-speed="2000"
-                                                                 data-stop="85">0</span>%
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="skill-bar">
-                                <div class="bar-inner">
-                                    <div class="bar progress-line" data-width="85"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
