@@ -1,11 +1,12 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from .validators import max_value_validator, min_value_validator
 
 
 class Skill(models.Model):
     title = models.CharField(max_length=120)
-    percent = models.IntegerField(validators=[MaxValueValidator(100, 'It is wrong!'),
-                                              MinValueValidator(0, 'It is wrong!')])
+    percent = models.IntegerField(validators=[max_value_validator,
+                                              min_value_validator])
 
     def __str__(self):
         return self.title
