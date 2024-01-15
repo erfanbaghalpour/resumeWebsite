@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
-from Skills.models import Skill, Biography
+from Skills.models import Skill, Biography, Experience
 
 
 # class Index(TemplateView):
@@ -11,8 +11,10 @@ from Skills.models import Skill, Biography
 def index(request: HttpRequest):
     skills = Skill.objects.all()
     bio = Biography.objects.filter(is_active=True).first()
+    experience = Experience.objects.all()
     context = {
         'skills': skills,
-        'bio': bio
+        'bio': bio,
+        'experience': experience,
     }
     return render(request, 'core/index.html', context=context)

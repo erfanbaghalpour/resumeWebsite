@@ -4,6 +4,7 @@ from .validators import max_value_validator, min_value_validator
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
 class Skill(models.Model):
     title = models.CharField(max_length=120)
     percent = models.IntegerField(validators=[max_value_validator,
@@ -22,3 +23,24 @@ class Biography(models.Model):
 
     def __str__(self):
         return self.title
+
+
+# class Experience(models.Model):
+#     title = models.CharField(max_length=10, null=True, blank=True)
+#     projects_count = models.IntegerField()
+#     lines_of_code = models.IntegerField()
+#     working_hours = models.IntegerField()
+#     rates = models.IntegerField()
+
+# def __str__(self):
+#     return self.title
+
+
+class Experience(models.Model):
+    projects_count = models.IntegerField()
+    lines_of_code = models.IntegerField()
+    working_hours = models.IntegerField()
+    rates = models.IntegerField()
+
+    def __str__(self):
+        return f'Experience:{self.id}'
