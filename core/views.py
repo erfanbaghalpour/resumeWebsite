@@ -1,9 +1,10 @@
 from django.http import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import TemplateView
 from Skills.models import Skill, Biography, Experience
 from ContactUs.forms import ContactUsForm
+from ContactUs.models import ContactUs
 
 
 # class Index(TemplateView):
@@ -13,7 +14,29 @@ def index(request: HttpRequest):
     skills = Skill.objects.all()
     bio = Biography.objects.filter(is_active=True).first()
     experience = Experience.objects.all()
-    contact_form = ContactUsForm()
+    if request.method == "POST":
+        contact_form = ContactUsForm(request.POST)
+        if contact_form.is_valid():
+            name = contact_form.cleaned_data.get("name")
+            email = contact_form.cleaned_data.get("email")
+            subject = contact_form.cleaned_data.get("subject")
+            text = contact_form.cleaned_data.get("text")
+            # ContactUs.objects.create(
+            #     name=name,
+            #     email=email,
+            #     subject=subject,
+            #     text=text,
+            # )
+            new_contact = ContactUs(
+                name=name,
+                email=email,
+                subject=subject,
+                text=text,
+            )
+            new_contact.save()
+            return redirect("core:index")
+    else:
+        contact_form = ContactUsForm()
     context = {
         'skills': skills,
         'bio': bio,
@@ -21,3 +44,37 @@ def index(request: HttpRequest):
         'form': contact_form,
     }
     return render(request, 'core/index.html', context=context)
+
+# def index(request: HttpRequest):
+#     skills = Skill.objects.all()
+#     bio = Biography.objects.filter(is_active=True).first()
+#     experience = Experience.objects.all()
+#
+#     if request.method == "POST":
+#         contact_form = ContactUsForm(request.POST)
+#
+#         if contact_form.is_valid():
+#             name = contact_form.cleaned_data.get("name")
+#             email = contact_form.cleaned_data.get("email")
+#             subject = contact_form.cleaned_data.get("subject")
+#             text = contact_form.cleaned_data.get("text")
+#
+#             ContactUs.objects.create(
+#                 name=name,
+#                 email=email,
+#                 subject=subject,
+#                 text=text,
+#             )
+#
+#             return redirect("core:index")
+#     else:
+#         contact_form = ContactUsForm()
+#
+#     context = {
+#         'skills': skills,
+#         'bio': bio,
+#         'experience': experience,
+#         'form': contact_form,
+#     }
+#
+#     return render(request, 'core/index.html', context=context)
