@@ -16,6 +16,8 @@ class Skill(models.Model):
 
 class Biography(models.Model):
     title = models.CharField(max_length=120)
+    name = models.CharField(max_length=120, blank=True, null=True)
+    job = models.CharField(max_length=120, blank=True, null=True)
     # description = RichTextUploadingField(max_length=2000)
     description = models.TextField(max_length=2000)
     image = models.ImageField(max_length=1000, upload_to='media/images/biography')

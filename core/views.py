@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from Skills.models import Skill, Biography, Experience
 from ContactUs.forms import ContactUsForm
 from ContactUs.models import ContactUs
+from django.contrib import messages
 
 
 # class Index(TemplateView):
@@ -34,7 +35,11 @@ def index(request: HttpRequest):
                 text=text,
             )
             new_contact.save()
+            messages.add_message(request, messages.SUCCESS, 'Your message has been successfully received!')
             return redirect("core:index")
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Your message has not been registered. Please fix the existing errors!')
     else:
         contact_form = ContactUsForm()
     context = {

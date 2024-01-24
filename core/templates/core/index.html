@@ -44,7 +44,7 @@
 <!-- Start Navbar Area -->
 <nav class="navbar navbar-expand-lg navbar-light bg-dark-color bg-light navbar-style-two">
     <div class="container">
-        <a class="navbar-brand" href="index-3.html"><img src="/static/img/white-logo.png" alt="logo"><img
+        <a class="navbar-brand" href="{% url 'core:index' %}"><img src="/static/img/white-logo.png" alt="logo"><img
                 src="/static/img/logo.png" alt="logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,6 +63,7 @@
             </ul>
         </div>
     </div>
+
 </nav>
 <!-- End Navbar Area -->
 
@@ -71,23 +72,36 @@
     <div class="d-table">
         <div class="d-table-cell">
             <div class="container">
+                {% if messages %}
+
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <strong>New Message!</strong> {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12">
                         <div class="main-banner-content white-color">
-                            <span>Hello, my name is <b>Alysa</b></span>
+                            <span>Hello, my name is <b>{{ bio.name }}</b></span>
 
                             <div class="title">
                                 <h5>I am a</h5>
-                                <h1>Web Developer</h1>
+                                <h1>{{ bio.job }}</h1>
                             </div>
 
-                            <p>Creating modern and responsive design for Web and Mobile.</p>
+                            <p>I develop projects using Python and Django.</p>
                         </div>
                     </div>
 
                     <div class="col-lg-6 col-md-12">
                         <div class="banner-image">
                             <img src="/static/img/man-1.png" alt="image">
+                            {% comment %}<img src="{{ bio.image.url }}" alt="image">{% endcomment %}
                         </div>
                     </div>
                 </div>
