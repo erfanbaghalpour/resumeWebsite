@@ -19,6 +19,7 @@ class SocialMedia(models.Model):
         ('instagram-logo', 'icon instagram'),
         ('telegram', 'icon telegram'),
         ('envelope', 'icon envelope'),
+        ('github-square', 'icon github'),
     ]
     icon = models.CharField(max_length=15, choices=SOCIAL_MEDIA_ICON)
 
