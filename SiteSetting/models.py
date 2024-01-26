@@ -16,7 +16,7 @@ class SocialMedia(models.Model):
     url = models.URLField()
     SOCIAL_MEDIA_ICON = [
         ('linkedin-square', 'icon linkedin'),
-        ('instagram-logo', 'icon instagram'),
+        ('instagram', 'icon instagram'),
         ('telegram', 'icon telegram'),
         ('envelope', 'icon envelope'),
         ('github-square', 'icon github'),

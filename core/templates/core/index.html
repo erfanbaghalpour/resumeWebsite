@@ -586,14 +586,15 @@
                     <ul class="contact-info-list">
                         <li><span>Address:</span> <a
                                 href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-                                class="popup-gmaps">123 Qwerty Avenue NYC, USA</a></li>
-                        <li><span>Email:</span> <a href="#">alysa@gmail.com</a></li>
-                        <li><span>Phone:</span> <a href="#">+44 7584 75489</a></li>
-                        <li><span>Website:</span> <a href="#" target="_blank">www.example.com</a></li>
+                                class="popup-gmaps">{{ setting.address }}</a></li>
+                        <li><span>Email:</span> <a href="#">{{ setting.email }}</a></li>
+                        <li><span>Phone:</span> <a href="mailto:erfanbaghalpour@gmail.com"
+                                                   target="_blank">{{ setting.phone_number }}</a></li>
+                        <li><span>Website:</span> <a href="#" target="_blank">www.erfanbaghalpour.com</a></li>
                     </ul>
                     <h3>Follow Me</h3>
-                    <ul class="social">
-                        <li><a href="https://twitter.com" target="_blank"><i class="fa fa-linkedin-square"
+                    {% comment %}<ul class="social">
+                        <li><a href="{{ social_media.url }}" target="_blank"><i class="fa fa-{{ social_media.icon }}"
                                                                              aria-hidden="true"></i></a></li>
                         <li><a href="https://instagram.com/" target="_blank"><i class="flaticon-instagram-logo"></i></a>
                         </li>
@@ -605,6 +606,12 @@
                         <li><a href="mailto:erfanbaghalpour@gmail.com" target="_blank"><i class="fa fa-github-square"
                                                                                           aria-hidden="true"></i></a>
                         </li>
+                    </ul>{% endcomment %}
+                    <ul class="social">
+                        {% for social_media in social_media_list %}
+                            <li><a href="{{ social_media.url }}" target="_blank"><i
+                                    class="fa fa-{{ social_media.icon }}" aria-hidden="true"></i></a></li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -692,7 +699,7 @@
 <!-- Start Copyright Area -->
 <div class="copyright-area">
     <div class="container">
-        <p><i class="far fa-copyright"></i> Copyright 2021. All Rights are Reserved.</p>
+        <p><i class="far fa-copyright"></i> {{ setting.copy_right_text }}</p>
     </div>
 </div>
 <!-- End Copyright Area -->
