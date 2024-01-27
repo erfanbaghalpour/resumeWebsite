@@ -124,18 +124,21 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-services-box bg-dark-color">
-                    <div class="icon">
-                        <i class="flaticon-computer"></i>
+            {% for services in my_services %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-services-box bg-dark-color">
+                        <div class="icon">
+                            {% comment %}<i class="flaticon-django"></i>{% endcomment %}
+                            <img src="{{ services.image_icon.url }}" alt="{{ services.title }}">
+                        </div>
+                        <h3>{{ services.title }}</h3>
+                        <p>{{ services.text }}</p>
                     </div>
-                    <h3>Web Design</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
                 </div>
-            </div>
+            {% endfor %}
 
-            <div class="col-lg-4 col-md-6">
+
+            {% comment %}            <div class="col-lg-4 col-md-6">
                 <div class="single-services-box bg-dark-color">
                     <div class="icon">
                         <i class="flaticon-repair"></i>
@@ -188,7 +191,7 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
                 </div>
-            </div>
+            </div>{% endcomment %}
         </div>
     </div>
 </section>

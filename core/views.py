@@ -6,6 +6,7 @@ from Skills.models import Skill, Biography, Experience
 from ContactUs.forms import ContactUsForm
 from ContactUs.models import ContactUs
 from django.contrib import messages
+from Services.models import MyServices
 
 
 # class Index(TemplateView):
@@ -15,6 +16,7 @@ def index(request: HttpRequest):
     skills = Skill.objects.all()
     bio = Biography.objects.filter(is_active=True).first()
     experience = Experience.objects.all()
+    my_services = MyServices.objects.all()
     if request.method == "POST":
         contact_form = ContactUsForm(request.POST)
         if contact_form.is_valid():
@@ -47,6 +49,7 @@ def index(request: HttpRequest):
         'bio': bio,
         'experience': experience,
         'form': contact_form,
+        'my_services': my_services,
     }
     return render(request, 'core/index.html', context=context)
 
