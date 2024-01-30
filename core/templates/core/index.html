@@ -513,22 +513,23 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog-post white-color">
-                    <div class="post-image">
-                        <a href="#"><img src="/static/img/blog-img1.jpg" alt="image"></a>
-                    </div>
+            {% for blog in blogs %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-blog-post white-color">
+                        <div class="post-image">
+                            <a href="{% url 'Blog:blog_list' %}"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
+                        </div>
 
-                    <div class="post-content">
-                        <h3><a href="#">4 Reasons to Leverage DIY Website Builders</a></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Quis ipsum suspendisse.</p>
-                        <a href="#" class="read-more-btn">Read More</a>
+                        <div class="post-content">
+                            <h3><a href="{% url 'Blog:blog_list' %}">{{ blog.title }}</a></h3>
+                            <p>{{ blog.description|safe|truncatewords:30 }}</p>
+                            <a href="{% url 'Blog:blog_list' %}" class="read-more-btn">Read More</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
 
-            <div class="col-lg-4 col-md-6">
+            {% comment %}            <div class="col-lg-4 col-md-6">
                 <div class="single-blog-post white-color">
                     <div class="post-image">
                         <a href="#"><img src="/static/img/blog-img2.jpg" alt="image"></a>
@@ -556,7 +557,7 @@
                         <a href="#" class="read-more-btn">Read More</a>
                     </div>
                 </div>
-            </div>
+            </div>{% endcomment %}
         </div>
     </div>
 </section>

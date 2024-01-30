@@ -7,6 +7,7 @@ from ContactUs.forms import ContactUsForm
 from ContactUs.models import ContactUs
 from django.contrib import messages
 from Services.models import MyServices, MyWork
+from Blog.models import Blog
 
 
 # class Index(TemplateView):
@@ -18,6 +19,7 @@ def index(request: HttpRequest):
     experience = Experience.objects.all()
     my_services = MyServices.objects.all()
     my_work = MyWork.objects.all()
+    blogs = Blog.objects.filter(active=True)[:4]
     if request.method == "POST":
         contact_form = ContactUsForm(request.POST)
         if contact_form.is_valid():
@@ -52,6 +54,7 @@ def index(request: HttpRequest):
         'form': contact_form,
         'my_services': my_services,
         'my_work': my_work,
+        'blogs': blogs,
     }
     return render(request, 'core/index.html', context=context)
 
