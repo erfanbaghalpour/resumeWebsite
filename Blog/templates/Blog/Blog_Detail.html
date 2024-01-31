@@ -1,0 +1,349 @@
+
+<!doctype html>
+<html lang="zxx">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap Min CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <!-- Animate Min CSS -->
+        <link rel="stylesheet" href="/static/css/animate.min.css">
+        <!-- Fontawesome Min CSS -->
+        <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+        <!-- Flaticon CSS -->
+        <link rel="stylesheet" href="/static/css/flaticon.css">
+        <!-- Magnific Popup Min CSS -->
+        <link rel="stylesheet" href="/static/css/magnific-popup.min.css">
+        <!-- Odometer Min CSS -->
+        <link rel="stylesheet" href="/static/css/odometer.min.css">
+        <!-- Owl Carousel Min CSS -->
+        <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+        <!-- Style CSS -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="/static/css/responsive.css">
+
+        <title>Alysa - Personal Portfolio Template</title>
+
+        <link rel="icon" type="image/png" href="/static/img/favicon.png">
+    </head>
+
+    <body id="home" data-bs-spy="scroll" data-bs-offset="70">
+
+        <!-- Start Preloader Area -->
+        <div class="preloader">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+        <!-- End Preloader Area -->
+
+        <!-- Start Navbar Area -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-style-two">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'core:index' %}"><img src="/static/img/logo.png" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+            </div>
+        </nav>
+        <!-- End Navbar Area -->
+
+        <!-- Start Page Title Area -->
+        <div class="page-title-area bg-main-color">
+            <div class="container">
+                <h2>Blog Details</h2>
+            </div>
+        </div>
+        <!-- End Page Title Area -->
+
+        <!-- Start Blog Details Area -->
+        <section class="blog-details-area ptb-120 bg-gray-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12 offset-lg-2 offset-md-0">
+                        <div class="blog-details">
+                            <div class="article-image">
+                                <img src="{{ blog_detail.image.url }}" alt="image">
+                            </div>
+
+                            <div class="article-content">
+                                <div class="entry-meta">
+                                    <ul>
+                                        <li>
+                                            <i class="far fa-user-circle"></i>
+                                            By: <a href="#">{{ blog_detail.author }}</a>
+                                        </li>
+
+                                        <li>{{ blog_detail.created }}</li>
+
+                                        <li><a href="#">Tech</a></li>
+                                        
+                                        {% comment %}<li>2 Mins Read</li>{% endcomment %}
+
+                                        {% comment %}<li>521 Views</li>{% endcomment %}
+
+                                        <li><a href="#">3 Comments</a></li>
+                                    </ul>
+                                </div>
+
+                                {% comment %}<h3>{{ blog_detail.title }}</h3>{% endcomment %}
+                                <blockquote class="wp-block-quote">
+                                    <p>{{ blog_detail.title }}</p>
+
+                                    <cite>{{ blog_detail.author }}</cite>
+                                </blockquote>
+
+                                <p>{{ blog_detail.description }}</p>
+
+
+                            </div>
+
+                            <div class="article-footer">
+                                <div class="article-tags">
+                                    <span><i class="fas fa-bookmark"></i></span>
+
+                                    <a href="#">Fashion</a>,
+                                    <a href="#">Games</a>,
+                                    <a href="#">Travel</a>
+                                </div>
+
+                                <div class="article-share">
+                                    <ul class="social">
+                                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comments-area">
+                            <h3 class="comments-title">2 Comments:</h3>
+
+                            <ol class="comment-list">
+                                <li class="comment">
+                                    <article class="comment-body">
+                                        <footer class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <img src="/static/img/author1.jpg" class="avatar" alt="image">
+                                                <b class="fn">John Jones</b>
+                                                <span class="says">says:</span>
+                                            </div>
+
+                                            <div class="comment-metadata">
+                                                <a href="#">
+                                                    <time>April 24, 2021 at 10:59 am</time>
+                                                </a>
+                                            </div>
+                                        </footer>
+
+                                        <div class="comment-content">
+                                            <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        </div>
+
+                                        <div class="reply">
+                                            <a href="#" class="comment-reply-link">Reply</a>
+                                        </div>
+                                    </article>
+
+                                    <ol class="children">
+                                        <li class="comment">
+                                            <article class="comment-body">
+                                                <footer class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        <img src="/static/img/author2.jpg" class="avatar" alt="image">
+                                                        <b class="fn">Steven Smith</b>
+                                                        <span class="says">says:</span>
+                                                    </div>
+        
+                                                    <div class="comment-metadata">
+                                                        <a href="#">
+                                                            <time>April 24, 2021 at 10:59 am</time>
+                                                        </a>
+                                                    </div>
+                                                </footer>
+        
+                                                <div class="comment-content">
+                                                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                </div>
+        
+                                                <div class="reply">
+                                                    <a href="#" class="comment-reply-link">Reply</a>
+                                                </div>
+                                            </article>
+                                        </li>
+
+                                        <ol class="children">
+                                            <li class="comment">
+                                                <article class="comment-body">
+                                                    <footer class="comment-meta">
+                                                        <div class="comment-author vcard">
+                                                            <img src="/static/img/author3.jpg" class="avatar" alt="image">
+                                                            <b class="fn">Sarah Taylor</b>
+                                                            <span class="says">says:</span>
+                                                        </div>
+            
+                                                        <div class="comment-metadata">
+                                                            <a href="#">
+                                                                <time>April 24, 2021 at 10:59 am</time>
+                                                            </a>
+                                                        </div>
+                                                    </footer>
+            
+                                                    <div class="comment-content">
+                                                        <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                    </div>
+            
+                                                    <div class="reply">
+                                                        <a href="#" class="comment-reply-link">Reply</a>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        </ol>
+                                    </ol>
+                                </li>
+
+                                <li class="comment">
+                                    <article class="comment-body">
+                                        <footer class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <img src="/static/img/author2.jpg" class="avatar" alt="image">
+                                                <b class="fn">John Doe</b>
+                                                <span class="says">says:</span>
+                                            </div>
+
+                                            <div class="comment-metadata">
+                                                <a href="#">
+                                                    <time>April 24, 2021 at 10:59 am</time>
+                                                </a>
+                                            </div>
+                                        </footer>
+
+                                        <div class="comment-content">
+                                            <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                        </div>
+
+                                        <div class="reply">
+                                            <a href="#" class="comment-reply-link">Reply</a>
+                                        </div>
+                                    </article>
+
+                                    <ol class="children">
+                                        <li class="comment">
+                                            <article class="comment-body">
+                                                <footer class="comment-meta">
+                                                    <div class="comment-author vcard">
+                                                        <img src="/static/img/author4.jpg" class="avatar" alt="image">
+                                                        <b class="fn">James Anderson</b>
+                                                        <span class="says">says:</span>
+                                                    </div>
+        
+                                                    <div class="comment-metadata">
+                                                        <a href="#">
+                                                            <time>April 24, 2021 at 10:59 am</time>
+                                                        </a>
+                                                    </div>
+                                                </footer>
+        
+                                                <div class="comment-content">
+                                                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                                </div>
+        
+                                                <div class="reply">
+                                                    <a href="#" class="comment-reply-link">Reply</a>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+
+                            <div class="comment-respond">
+                                <h3 class="comment-reply-title">Leave a Reply</h3>
+
+                                <form class="comment-form">
+                                    <p class="comment-notes">
+                                        <span id="email-notes">Your email address will not be published.</span>
+                                        Required fields are marked 
+                                        <span class="required">*</span>
+                                    </p>
+                                    <p class="comment-form-comment">
+                                        <label>Comment</label>
+                                        <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525" required="required"></textarea>
+                                    </p>
+                                    <p class="comment-form-author">
+                                        <label>Name <span class="required">*</span></label>
+                                        <input type="text" id="author" name="author" required="required">
+                                    </p>
+                                    <p class="comment-form-email">
+                                        <label>Email <span class="required">*</span></label>
+                                        <input type="email" id="email" name="email" required="required">
+                                    </p>
+                                    <p class="comment-form-url">
+                                        <label>Website</label>
+                                        <input type="url" id="url" name="url">
+                                    </p>
+                                    <p class="comment-form-cookies-consent">
+                                        <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
+                                        <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>
+                                    </p>
+                                    <p class="form-submit">
+                                        <input type="submit" name="submit" id="submit" class="submit" value="Post Comment">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Blog Details Area -->
+
+        <!-- Start Copyright Area -->
+        <div class="copyright-area">
+            <div class="container">
+                <p><i class="far fa-copyright"></i> Copyright 2021. All Rights are Reserved.</p>
+            </div>
+        </div>
+        <!-- End Copyright Area -->
+
+        <div class="go-top"><i class="fas fa-arrow-up"></i></div>
+
+        <!-- jQuery Min JS -->
+        <script src="/static/js/jquery.min.js"></script>
+        <!-- Popper Min JS -->
+        <script src="/static/js/popper.min.js"></script>
+        <!-- Bootstrap Min JS -->
+        <script src="/static/js/bootstrap.min.js"></script>
+        <!-- Mixitup Min JS -->
+        <script src="/static/js/mixitup.min.js"></script>
+        <!-- Magnific Popup Min JS -->
+        <script src="/static/js/jquery.magnific-popup.min.js"></script>
+        <!-- Owl Carousel Min JS -->
+        <script src="/static/js/owl.carousel.min.js"></script>
+		<!-- Appear Min JS -->
+        <script src="/static/js/jquery.appear.js"></script>
+        <!-- Odometer Min JS -->
+        <script src="/static/js/odometer.min.js"></script>
+        <!-- Tilt JS -->
+        <script src="/static/js/tilt.jquery.js"></script>
+        <!-- Particles Min JS -->
+        <script src="/static/js/particles.min.js"></script>
+        <!-- Parallax Min JS -->
+        <script src="/static/js/parallax.min.js"></script>
+        <!-- WOW Min JS -->
+        <script src="/static/js/wow.min.js"></script>
+        <!-- Form Validator Min JS -->
+        <script src="/static/js/form-validator.min.js"></script>
+        <!-- Contact Form Min JS -->
+        <script src="/static/js/contact-form-script.js"></script>
+        <!-- Main JS -->
+        <script src="/static/js/main.js"></script>
+    </body>
+</html>

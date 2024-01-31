@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Blog
 from django.views.generic import ListView
 
@@ -16,3 +16,11 @@ class BlogList(ListView):
     template_name = "Blog/Blog.html"
     paginate_by = 1
     context_object_name = 'blogs'
+
+
+def blog_detail(request, blog_id):
+    detail_blog = get_object_or_404(Blog, id=blog_id, active=True)
+    context = {
+        'blog_detail': detail_blog
+    }
+    return render(request, 'Blog/Blog_Detail.html', context=context)
