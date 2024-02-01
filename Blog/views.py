@@ -14,7 +14,7 @@ class BlogList(ListView):
     # model = Blog
     queryset = Blog.objects.filter(active=True)
     template_name = "Blog/Blog.html"
-    paginate_by = 1
+    paginate_by = 3
     context_object_name = 'blogs'
 
 

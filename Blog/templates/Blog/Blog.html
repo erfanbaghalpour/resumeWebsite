@@ -80,13 +80,13 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-blog-post white-color">
                         <div class="post-image">
-                            <a href="#"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
+                            <a href="{% url 'Blog:blog_detail' blog.id %}"><img src="{{ blog.image.url }}" alt="{{ blog.title }}"></a>
                         </div>
 
                         <div class="post-content">
-                            <h3><a href="#">{{ blog.title }}</a></h3>
+                            <h3><a href="{% url 'Blog:blog_detail' blog.id %}">{{ blog.title }}</a></h3>
                             <p>{{ blog.description|safe|truncatewords:50 }}</p>
-                            <a href="#" class="read-more-btn">Read More</a>
+                            <a href="{% url 'Blog:blog_detail' blog.id %}" class="read-more-btn">Read More</a>
                         </div>
                     </div>
                 </div>
