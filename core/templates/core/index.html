@@ -675,6 +675,17 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
+                        <div class="col-lg-12 col-md-12 text-light">
+                            <div class="form-group">
+                                {% comment %}<textarea name="message" class="form-control" id="message" placeholder="Your Message"
+                                          cols="30" rows="4" required data-error="Write your message"></textarea>{% endcomment %}
+                                {% comment %}{{ form.text|attr:"placeholder:Your Message..."|attr:"class:form-control" }}{% endcomment %}
+                                {{ form.captcha.label_tag }}
+                                {{ form.captcha }}
+                                {{ form.captcha.errors }}
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
 
                         <div class="col-lg-12 col-md-12">
                             <button type="submit" class="btn btn-primary">Send Message</button>

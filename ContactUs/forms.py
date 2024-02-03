@@ -1,5 +1,5 @@
 from django import forms
-
+from django_recaptcha.fields import ReCaptchaField
 
 # class ContactUsForm(forms.Form):
 #     name = forms.CharField(max_length=200)
@@ -28,3 +28,4 @@ class ContactUsForm(forms.Form):
                                                         'placeholder': 'Text', 'id': 'contactForm'}),
                            error_messages={'required': 'Please enter your text',
                                            'max_length': 'It could not be more than 2000'})
+    captcha = ReCaptchaField()
