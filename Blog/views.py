@@ -22,8 +22,9 @@ class BlogList(ListView):
 
 
 def blog_detail(request, blog_id):
-    detail_blog = get_object_or_404(Blog, id=blog_id, active=True)
     comment_form = CommentForm()
+    detail_blog = get_object_or_404(Blog, id=blog_id, active=True)
+    comments = detail_blog.comment_set.filter(active=True)
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -37,11 +38,12 @@ def blog_detail(request, blog_id):
                 blog=detail_blog,
             )
             messages.add_message(request, messages.SUCCESS, 'Your comment has been successfully registered.')
-            return redirect('Blog:blog_detail', blog_id)
+            return redirect('Blog:blog_detail', detail_blog.id)
         messages.add_message(request, messages.ERROR, 'Your comment has not been successfully registered.')
 
     context = {
         'blog_detail': detail_blog,
         'comment_form': comment_form,
+        'comments': comments,
     }
     return render(request, 'Blog/Blog_Detail.html', context=context)

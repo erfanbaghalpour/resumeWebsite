@@ -141,53 +141,47 @@
 
                     <ol class="comment-list">
                         <li class="comment">
-                            <article class="comment-body">
+                            {% for comment in comments %}
+                                <article class="comment-body">
                                 <footer class="comment-meta">
                                     <div class="comment-author vcard">
-                                        <img src="/static/img/author1.jpg" class="avatar" alt="image">
-                                        <b class="fn">John Jones</b>
+                                        <b class="fn">{{ comment.name }}</b>
                                         <span class="says">says:</span>
                                     </div>
 
                                     <div class="comment-metadata">
                                         <a href="#">
-                                            <time>April 24, 2021 at 10:59 am</time>
+                                            <time>{{ comment.created }}</time>
                                         </a>
                                     </div>
                                 </footer>
 
                                 <div class="comment-content">
-                                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
-                                        when an unknown printer took a galley of type and scrambled it to make a type
-                                        specimen book.</p>
+                                    <p>{{ comment.text }}</p>
                                 </div>
 
                                 <div class="reply">
                                     <a href="#" class="comment-reply-link">Reply</a>
                                 </div>
                             </article>
-
-                            <ol class="children">
+                                {% comment %}<ol class="children">
                                 <li class="comment">
                                     <article class="comment-body">
                                         <footer class="comment-meta">
                                             <div class="comment-author vcard">
-                                                <img src="/static/img/author2.jpg" class="avatar" alt="image">
-                                                <b class="fn">Steven Smith</b>
+                                                <b class="fn">{{ comment.name }}</b>
                                                 <span class="says">says:</span>
                                             </div>
 
                                             <div class="comment-metadata">
                                                 <a href="#">
-                                                    <time>April 24, 2021 at 10:59 am</time>
+                                                    <time>{{ comment.created }}</time>
                                                 </a>
                                             </div>
                                         </footer>
 
                                         <div class="comment-content">
-                                            <p>Lorem Ipsum has been the industry’s standard dummy text ever since the
-                                                1500s, when an unknown printer took a galley of type and scrambled it to
-                                                make a type specimen book.</p>
+                                            <p>{{ comment.text }}</p>
                                         </div>
 
                                         <div class="reply">
@@ -201,22 +195,19 @@
                                         <article class="comment-body">
                                             <footer class="comment-meta">
                                                 <div class="comment-author vcard">
-                                                    <img src="/static/img/author3.jpg" class="avatar" alt="image">
-                                                    <b class="fn">Sarah Taylor</b>
+                                                    <b class="fn">{{ comment.nam }}</b>
                                                     <span class="says">says:</span>
                                                 </div>
 
                                                 <div class="comment-metadata">
                                                     <a href="#">
-                                                        <time>April 24, 2021 at 10:59 am</time>
+                                                        <time>{{ comment.created }}</time>
                                                     </a>
                                                 </div>
                                             </footer>
 
                                             <div class="comment-content">
-                                                <p>Lorem Ipsum has been the industry’s standard dummy text ever since
-                                                    the 1500s, when an unknown printer took a galley of type and
-                                                    scrambled it to make a type specimen book.</p>
+                                                <p>{{ comment.text }}</p>
                                             </div>
 
                                             <div class="reply">
@@ -225,10 +216,14 @@
                                         </article>
                                     </li>
                                 </ol>
-                            </ol>
+                            </ol>{% endcomment %}
+                            {% endfor %}
+
+
+
                         </li>
 
-                        <li class="comment">
+                        {% comment %}<li class="comment">
                             <article class="comment-body">
                                 <footer class="comment-meta">
                                     <div class="comment-author vcard">
@@ -284,13 +279,13 @@
                                     </article>
                                 </li>
                             </ol>
-                        </li>
+                        </li>{% endcomment %}
                     </ol>
 
                     <div class="comment-respond">
                         <h3 class="comment-reply-title">Leave a Reply</h3>
 
-                        <form class="comment-form" method="post" action="{% url 'Blog:blog_detail' blog_detail.id %}">
+                        <form class="comment-form" method="post">
                             {% csrf_token %}
                             {% comment %}                            <p class="comment-notes">
                                 <span id="email-notes">Your email address will not be published.</span>
