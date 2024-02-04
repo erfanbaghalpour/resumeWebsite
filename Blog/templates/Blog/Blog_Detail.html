@@ -143,27 +143,27 @@
                         <li class="comment">
                             {% for comment in comments %}
                                 <article class="comment-body">
-                                <footer class="comment-meta">
-                                    <div class="comment-author vcard">
-                                        <b class="fn">{{ comment.name }}</b>
-                                        <span class="says">says:</span>
+                                    <footer class="comment-meta">
+                                        <div class="comment-author vcard">
+                                            <b class="fn">{{ comment.name }}</b>
+                                            <span class="says">says:</span>
+                                        </div>
+
+                                        <div class="comment-metadata">
+                                            <a href="#">
+                                                <time>{{ comment.created }}</time>
+                                            </a>
+                                        </div>
+                                    </footer>
+
+                                    <div class="comment-content">
+                                        <p>{{ comment.text }}</p>
                                     </div>
 
-                                    <div class="comment-metadata">
-                                        <a href="#">
-                                            <time>{{ comment.created }}</time>
-                                        </a>
+                                    <div class="reply">
+                                        <a href="#" class="comment-reply-link">Reply</a>
                                     </div>
-                                </footer>
-
-                                <div class="comment-content">
-                                    <p>{{ comment.text }}</p>
-                                </div>
-
-                                <div class="reply">
-                                    <a href="#" class="comment-reply-link">Reply</a>
-                                </div>
-                            </article>
+                                </article>
                                 {% comment %}<ol class="children">
                                 <li class="comment">
                                     <article class="comment-body">
@@ -218,7 +218,6 @@
                                 </ol>
                             </ol>{% endcomment %}
                             {% endfor %}
-
 
 
                         </li>
