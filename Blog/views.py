@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Blog
 from django.views.generic import ListView
-from Comments.models import Comment
-from Comments.forms import CommentForm
+from Comments.models import Comment, Reply
+from Comments.forms import CommentForm, ReplyForm
 from django.contrib import messages
 
 
@@ -25,6 +25,9 @@ def blog_detail(request, blog_id):
     comment_form = CommentForm()
     detail_blog = get_object_or_404(Blog, id=blog_id, active=True)
     comments = detail_blog.comment_set.filter(active=True)
+    reply_form = ReplyForm()
+    # replies = detail_blog.reply_set.filter(active=True)
+    replies = Reply.objects.filter(active=True)
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -45,5 +48,6 @@ def blog_detail(request, blog_id):
         'blog_detail': detail_blog,
         'comment_form': comment_form,
         'comments': comments,
+        'replies': replies,
     }
     return render(request, 'Blog/Blog_Detail.html', context=context)
