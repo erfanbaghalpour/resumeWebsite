@@ -141,62 +141,68 @@
 
                     <ol class="comment-list">
                         <li class="comment">
-                            {% for comment in comments %}
-                                <article class="comment-body">
-                                    <footer class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <b class="fn">{{ comment.name }}</b>
-                                            <span class="says">says:</span>
+                            {% if comments %}
+                                {% for comment in comments %}
+                                    <article class="comment-body">
+                                        <footer class="comment-meta">
+                                            <div class="comment-author vcard">
+                                                <b class="fn">{{ comment.name }}</b>
+                                                <span class="says">says:</span>
+                                            </div>
+
+                                            <div class="comment-metadata">
+                                                <a href="#">
+                                                    <time>{{ comment.created }}</time>
+                                                </a>
+                                            </div>
+                                        </footer>
+
+                                        <div class="comment-content">
+                                            <p>{{ comment.text }}</p>
                                         </div>
 
-                                        <div class="comment-metadata">
-                                            <a href="#">
-                                                <time>{{ comment.created }}</time>
-                                            </a>
+                                        <div class="reply">
+                                            <a href="#" class="comment-reply-link">Reply</a>
                                         </div>
-                                    </footer>
+                                    </article>
+                                    {% for reply in comment.recomment.all %}
+                                        {% if reply.comment_org == comment %}
+                                            <ol class="children">
+                                                <li class="comment">
+                                                    <article class="comment-body">
+                                                        <footer class="comment-meta">
+                                                            <div class="comment-author vcard">
+                                                                <b class="fn">{{ reply.name }}</b>
+                                                                <span class="says">says:</span>
+                                                            </div>
 
-                                    <div class="comment-content">
-                                        <p>{{ comment.text }}</p>
-                                    </div>
+                                                            <div class="comment-metadata">
+                                                                <a href="#">
+                                                                    <time>{{ reply.created }}</time>
+                                                                </a>
+                                                            </div>
+                                                        </footer>
 
-                                    <div class="reply">
-                                        <a href="#" class="comment-reply-link">Reply</a>
-                                    </div>
-                                </article>
-                                {% for reply in replies %}
-                                    {% if reply %}
-                                        <ol class="children">
-                                            <li class="comment">
-                                                <article class="comment-body">
-                                                    <footer class="comment-meta">
-                                                        <div class="comment-author vcard">
-                                                            <b class="fn">{{ reply.name }}</b>
-                                                            <span class="says">says:</span>
+                                                        <div class="comment-content">
+                                                            <p>{{ reply.re_comment }}</p>
                                                         </div>
 
-                                                        <div class="comment-metadata">
-                                                            <a href="#">
-                                                                <time>{{ reply.created }}</time>
-                                                            </a>
+                                                        <div class="reply">
+                                                            <a href="{% url 'Blog:blog_detail' comment.id %}"
+                                                               class="comment-reply-link">Reply</a>
                                                         </div>
-                                                    </footer>
+                                                    </article>
+                                                </li>
 
-                                                    <div class="comment-content">
-                                                        <p>{{ reply.text }}</p>
-                                                    </div>
+                                            </ol>
 
-                                                    <div class="reply">
-                                                        <a href="#" class="comment-reply-link">Reply</a>
-                                                    </div>
-                                                </article>
-                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
 
-                                        </ol>
-                                    {% endif %}
                                 {% endfor %}
-
-                            {% endfor %}
+                            {% else %}
+                                <h3>There is no comment for this post yet !</h3>
+                            {% endif %}
 
 
                         </li>

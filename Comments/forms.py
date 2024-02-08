@@ -1,5 +1,6 @@
 from django import forms
 from django_recaptcha.fields import ReCaptchaField
+from .models import Comment
 
 
 class CommentForm(forms.Form):
@@ -32,8 +33,22 @@ class ReplyForm(forms.Form):
                              widget=forms.EmailInput(attrs={'class': 'form-control form-control-lg text-light',
                                                             'placeholder': 'Email', 'id': 'contactForm'}),
                              error_messages={'required': 'Please enter your email'})
-    text = forms.CharField(required=True, label='Text', max_length=2000,
-                           widget=forms.Textarea(attrs={'class': 'form-control form-control-lg text-light my-class',
-                                                        'placeholder': 'Text', 'id': 'contactForm'}),
-                           error_messages={'required': 'Please enter your text',
-                                           'max_length': 'It could not be more than 2000'})
+    re_comment = forms.CharField(required=True, label='Text', max_length=2000,
+                                 widget=forms.Textarea(
+                                     attrs={'class': 'form-control form-control-lg text-light my-class',
+                                            'placeholder': 'Text', 'id': 'contactForm'}),
+                                 error_messages={'required': 'Please enter your text',
+                                                 'max_length': 'It could not be more than 2000'})
+
+
+class CommentFormNew(forms.ModelForm):
+    captcha = ReCaptchaField()
+
+    class Meta:
+        model = Comment
+        fields = {
+            'blog',
+            'name',
+            'text',
+            'email',
+        }
