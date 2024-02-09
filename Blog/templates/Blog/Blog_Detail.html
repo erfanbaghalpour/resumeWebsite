@@ -165,26 +165,25 @@
                                             <a href="#" class="comment-reply-link">Reply</a>
                                         </div>
                                     </article>
-                                    {% for reply in comment.recomment.all %}
-                                        {% if reply.comment_org == comment %}
+                                    {% for sub_comment in comment.comment_set.all %}
                                             <ol class="children">
                                                 <li class="comment">
                                                     <article class="comment-body">
                                                         <footer class="comment-meta">
                                                             <div class="comment-author vcard">
-                                                                <b class="fn">{{ reply.name }}</b>
+                                                                <b class="fn">{{ sub_comment.name }}</b>
                                                                 <span class="says">says:</span>
                                                             </div>
 
                                                             <div class="comment-metadata">
                                                                 <a href="#">
-                                                                    <time>{{ reply.created }}</time>
+                                                                    <time>{{ sub_comment.created }}</time>
                                                                 </a>
                                                             </div>
                                                         </footer>
 
                                                         <div class="comment-content">
-                                                            <p>{{ reply.re_comment }}</p>
+                                                            <p>{{ sub_comment.text }}</p>
                                                         </div>
 
                                                         <div class="reply">
@@ -195,8 +194,6 @@
                                                 </li>
 
                                             </ol>
-
-                                        {% endif %}
                                     {% endfor %}
 
                                 {% endfor %}
