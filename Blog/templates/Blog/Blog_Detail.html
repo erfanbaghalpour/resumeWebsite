@@ -139,11 +139,12 @@
                 <div class="comments-area">
                     <h3 class="comments-title">Comments:</h3>
 
-                    <ol class="comment-list">
+                    <ol class="comment-list" id="comment_form">
                         <li class="comment">
                             {% if comments %}
                                 {% for comment in comments %}
                                     <article class="comment-body">
+                                        <input type="hidden" id="parent_id">
                                         <footer class="comment-meta">
                                             <div class="comment-author vcard">
                                                 <b class="fn">{{ comment.name }}</b>
@@ -162,38 +163,35 @@
                                         </div>
 
                                         <div class="reply">
-                                            <a href="#" class="comment-reply-link">Reply</a>
+                                            <a onclick="fillParentId({{ comment.id }})"
+                                               class="comment-reply-link">Reply</a>
                                         </div>
                                     </article>
                                     {% for sub_comment in comment.comment_set.all %}
-                                            <ol class="children">
-                                                <li class="comment">
-                                                    <article class="comment-body">
-                                                        <footer class="comment-meta">
-                                                            <div class="comment-author vcard">
-                                                                <b class="fn">{{ sub_comment.name }}</b>
-                                                                <span class="says">says:</span>
-                                                            </div>
-
-                                                            <div class="comment-metadata">
-                                                                <a href="#">
-                                                                    <time>{{ sub_comment.created }}</time>
-                                                                </a>
-                                                            </div>
-                                                        </footer>
-
-                                                        <div class="comment-content">
-                                                            <p>{{ sub_comment.text }}</p>
+                                        <ol class="children">
+                                            <li class="comment">
+                                                <article class="comment-body">
+                                                    <footer class="comment-meta">
+                                                        <div class="comment-author vcard">
+                                                            <b class="fn">{{ sub_comment.name }}</b>
+                                                            <span class="says">says:</span>
                                                         </div>
 
-                                                        <div class="reply">
-                                                            <a href="{% url 'Blog:blog_detail' comment.id %}"
-                                                               class="comment-reply-link">Reply</a>
+                                                        <div class="comment-metadata">
+                                                            <a href="#">
+                                                                <time>{{ sub_comment.created }}</time>
+                                                            </a>
                                                         </div>
-                                                    </article>
-                                                </li>
+                                                    </footer>
 
-                                            </ol>
+                                                    <div class="comment-content">
+                                                        <p>{{ sub_comment.text }}</p>
+                                                    </div>
+
+                                                </article>
+                                            </li>
+
+                                        </ol>
                                     {% endfor %}
 
                                 {% endfor %}
@@ -316,7 +314,8 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                             <p class="form-submit">
-                                <input type="submit" name="submit" id="submit" class="submit" value="Post Comment">
+                                <input onclick="sendBlogComment({{ blog_detail.id }})" type="submit" name="submit"
+                                       id="submit" class="submit" value="Post Comment">
                             </p>
                         </form>
                     </div>
@@ -367,5 +366,6 @@
 <script src="/static/js/contact-form-script.js"></script>
 <!-- Main JS -->
 <script src="/static/js/main.js"></script>
+<script src="/static/js/custom.js"></script>
 </body>
 </html>

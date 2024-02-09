@@ -1,3 +1,4 @@
+from django.http import HttpRequest
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Blog
 from django.views.generic import ListView, DetailView
@@ -80,3 +81,11 @@ class BlogDetailView(DetailView):
         context = self.get_context_data()
         context['comment_form'] = comment_form
         return self.render_to_response(context)
+
+
+def add_blog_comment(request: HttpRequest):
+    blog_id = request.GET.get('blog_id')
+    blog_comment = request.GET.get('blog_comment')
+    parent_id = request.GET.get('parent_id')
+    new_comment = Comment(blog_id=blog_id, text=blog_comment, parent_id=parent_id)
+    new_comment.save()
