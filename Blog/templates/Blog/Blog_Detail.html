@@ -201,70 +201,13 @@
 
 
                         </li>
-
-                        {% comment %}<li class="comment">
-                            <article class="comment-body">
-                                <footer class="comment-meta">
-                                    <div class="comment-author vcard">
-                                        <img src="/static/img/author2.jpg" class="avatar" alt="image">
-                                        <b class="fn">John Doe</b>
-                                        <span class="says">says:</span>
-                                    </div>
-
-                                    <div class="comment-metadata">
-                                        <a href="#">
-                                            <time>April 24, 2021 at 10:59 am</time>
-                                        </a>
-                                    </div>
-                                </footer>
-
-                                <div class="comment-content">
-                                    <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,
-                                        when an unknown printer took a galley of type and scrambled it to make a type
-                                        specimen book.</p>
-                                </div>
-
-                                <div class="reply">
-                                    <a href="#" class="comment-reply-link">Reply</a>
-                                </div>
-                            </article>
-
-                            <ol class="children">
-                                <li class="comment">
-                                    <article class="comment-body">
-                                        <footer class="comment-meta">
-                                            <div class="comment-author vcard">
-                                                <img src="/static/img/author4.jpg" class="avatar" alt="image">
-                                                <b class="fn">James Anderson</b>
-                                                <span class="says">says:</span>
-                                            </div>
-
-                                            <div class="comment-metadata">
-                                                <a href="#">
-                                                    <time>April 24, 2021 at 10:59 am</time>
-                                                </a>
-                                            </div>
-                                        </footer>
-
-                                        <div class="comment-content">
-                                            <p>Lorem Ipsum has been the industry’s standard dummy text ever since the
-                                                1500s, when an unknown printer took a galley of type and scrambled it to
-                                                make a type specimen book.</p>
-                                        </div>
-
-                                        <div class="reply">
-                                            <a href="#" class="comment-reply-link">Reply</a>
-                                        </div>
-                                    </article>
-                                </li>
-                            </ol>
-                        </li>{% endcomment %}
                     </ol>
 
                     <div class="comment-respond">
                         <h3 class="comment-reply-title">Leave a Reply</h3>
 
                         <form class="comment-form" method="post">
+                            <input type="hidden" id="parent_id" value="">
                             {% csrf_token %}
                             {% comment %}                            <p class="comment-notes">
                                 <span id="email-notes">Your email address will not be published.</span>
@@ -316,6 +259,7 @@
                             <p class="form-submit">
                                 <input onclick="sendBlogComment({{ blog_detail.id }})" type="submit" name="submit"
                                        id="submit" class="submit" value="Post Comment">
+                                {% comment %}<a id="submit" onclick="sendBlogComment({{ blog_detail.id }})" class="submit btn btn-primary">Post Comment</a>{% endcomment %}
                             </p>
                         </form>
                     </div>
