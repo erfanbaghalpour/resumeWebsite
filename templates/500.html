@@ -1,0 +1,39 @@
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap Min CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <title>500 Error</title>
+
+    <link rel="icon" type="image/png" href="/static/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body id="home" data-bs-spy="scroll" data-bs-offset="70">
+
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="col-md-6 text-center">
+            <h1 class="display-4">500 Error!</h1>
+            <p class="lead">Oops! Something went wrong on the server.</p>
+            <a href="{% url 'core:index' %}" class="btn btn-primary">Go Home</a>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery Min JS -->
+<script src="/static/js/jquery.min.js"></script>
+<!-- Popper Min JS -->
+<script src="/static/js/popper.min.js"></script>
+<!-- Bootstrap Min JS -->
+<script src="/static/js/bootstrap.min.js"></script>
+</body>
+</html>
