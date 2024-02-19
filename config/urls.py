@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from SiteSetting.views import RobotsTxtView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('blog/', include('Blog.urls')),
+    path('robots.txt/', RobotsTxtView.as_view()),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
