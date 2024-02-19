@@ -81,7 +81,7 @@
             <div class="col-lg-8 col-md-12 offset-lg-2 offset-md-0">
                 <div class="blog-details">
                     <div class="article-image">
-                        <img src="{{ blog_detail.image.url }}" alt="image">
+                        <img src="{{ blog.image.url }}" alt="image">
                     </div>
 
                     <div class="article-content">
@@ -89,10 +89,10 @@
                             <ul>
                                 <li>
                                     <i class="far fa-user-circle"></i>
-                                    By: <a href="#">{{ blog_detail.author }}</a>
+                                    By: <a href="#">{{ blog.author }}</a>
                                 </li>
 
-                                <li>{{ blog_detail.created }}</li>
+                                <li>{{ blog.created }}</li>
 
                                 <li><a href="#">Tech</a></li>
 
@@ -104,14 +104,14 @@
                             </ul>
                         </div>
 
-                        {% comment %}<h3>{{ blog_detail.title }}</h3>{% endcomment %}
+                        {% comment %}<h3>{{ blog.title }}</h3>{% endcomment %}
                         <blockquote class="wp-block-quote">
-                            <p>{{ blog_detail.title }}</p>
+                            <p>{{ blog.title }}</p>
 
-                            <cite>{{ blog_detail.author }}</cite>
+                            <cite>{{ blog.author }}</cite>
                         </blockquote>
 
-                        <p>{{ blog_detail.description }}</p>
+                        <p>{{ blog.description }}</p>
 
 
                     </div>
@@ -159,16 +159,17 @@
                                         </footer>
 
                                         <div class="comment-content">
-                                            <p>{{ comment.text }}</p>
+                                            <p id="commentText">{{ comment.text }}</p>
                                         </div>
 
-                                        <div class="reply">
+                                        {% comment %}<div class="reply">
                                             <a onclick="fillParentId({{ comment.id }})"
                                                class="comment-reply-link">Reply</a>
-                                        </div>
+                                        </div>{% endcomment %}
                                     </article>
                                     {% for sub_comment in comment.comment_set.all %}
-                                        <ol class="children">
+                                        <ol class="children" id="comment_form">
+                                            <input type="hidden" id="parent_id">
                                             <li class="comment">
                                                 <article class="comment-body">
                                                     <footer class="comment-meta">
@@ -194,6 +195,7 @@
                                         </ol>
                                     {% endfor %}
 
+
                                 {% endfor %}
                             {% else %}
                                 <h3>There is no comment for this post yet !</h3>
@@ -206,23 +208,17 @@
                     <div class="comment-respond">
                         <h3 class="comment-reply-title">Leave a Reply</h3>
 
-                        <form class="comment-form" method="post">
+                        <form class="comment-form" method="post" id="comment_form">
                             <input type="hidden" id="parent_id" value="">
                             {% csrf_token %}
-                            {% comment %}                            <p class="comment-notes">
-                                <span id="email-notes">Your email address will not be published.</span>
-                                Required fields are marked
-                                <span class="required">*</span>
-                            </p>{% endcomment %}
                             <div class="form-group">
-                                <p class="comment-form-comment">
+                                <p class="comment-form-comment" id="commentText">
                                     {{ comment_form.text.label_tag }}
                                     {{ comment_form.text }}
                                     {{ comment_form.text.errors }}
                                 </p>
                                 <div class="help-block with-errors"></div>
                             </div>
-
                             <div class="form-group">
                                 <p class="comment-form-author">
                                     {{ comment_form.name.label_tag }}
@@ -239,17 +235,7 @@
                                 </p>
                                 <div class="help-block with-errors"></div>
                             </div>
-
-
-                            {% comment %}                            <p class="comment-form-cookies-consent">
-                                <input type="checkbox" value="yes" name="wp-comment-cookies-consent"
-                                       id="wp-comment-cookies-consent">
-                                <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser
-                                    for the next time I comment.</label>
-                            </p>{% endcomment %}
                             <div class="form-group">
-
-
                                 {{ comment_form.captcha.label_tag }}
                                 {{ comment_form.captcha }}
                                 {{ comment_form.captcha.errors }}
@@ -257,9 +243,8 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                             <p class="form-submit">
-                                <input onclick="sendBlogComment({{ blog_detail.id }})" type="submit" name="submit"
+                                <input onclick="sendBlogComment({{ blog.id }})" type="submit" name="submit"
                                        id="submit" class="submit" value="Post Comment">
-                                {% comment %}<a id="submit" onclick="sendBlogComment({{ blog_detail.id }})" class="submit btn btn-primary">Post Comment</a>{% endcomment %}
                             </p>
                         </form>
                     </div>

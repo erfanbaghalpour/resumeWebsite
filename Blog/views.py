@@ -53,13 +53,22 @@ class BlogList(ListView):
 class BlogDetailView(DetailView):
     model = Blog
     template_name = 'Blog/Blog_Detail.html'
-    context_object_name = 'blog_detail'
+    # context_object_name = 'blog_detail'
+
+    def get_queryset(self):
+        query = super(BlogDetailView, self).get_queryset()
+        query = query.filter(active=True)
+        return query
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        # context = super().get_context_data(**kwargs)
+        context = super(BlogDetailView, self).get_context_data()
+        blog: Blog = kwargs.get('object')
         context['comment_form'] = CommentForm()
-        context['comments'] = self.object.comment_set.filter(active=True, parent=None).prefetch_related(
-            'comment_set')
+        # context['comments'] = self.object.comment_set.filter(active=True, parent=None).prefetch_related(
+        #     'comment_set')
+        context['comments'] = Comment.objects.filter(blog_id=blog.id, parent=None).order_by(
+            '-created').prefetch_related('blog__comment_set')
         return context
 
     def post(self, request, *args, **kwargs):
