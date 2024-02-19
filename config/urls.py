@@ -19,11 +19,19 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from SiteSetting.views import RobotsTxtView
+from django.contrib.sitemaps.views import sitemap
+from Blog.sitemaps import BlogSitemaps
+
+
+sitemaps = {
+    'blogs': BlogSitemaps
+}
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('blog/', include('Blog.urls')),
     path('robots.txt/', RobotsTxtView.as_view()),
+    path('sitemap.xml/', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
